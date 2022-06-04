@@ -5,8 +5,10 @@
       <span>{{colorToDisplay}}</span>
       <h1>Guessing Game</h1>
     </div>
-    <NavBar @result="result=$event"/>
-    <router-view @colorToDisplay="colorToDisplay=$event"></router-view>
+    <NavBar :result="result"/>
+    <!--  -->
+    <router-view ref="myChild" @result="result=$event"  @colorToDisplay="colorToDisplay=$event"></router-view>
+    <!-- <button @click="$refs.myChild.restart()">boton restart</button> -->
   </div>
 </template>
 
@@ -19,13 +21,19 @@ export default {
     return {
 
     colorToDisplay: "",
-    result: ''
+    result: '',
+    
 
     }
     
   },
   components: {
-    NavBar
+    NavBar,
+  },
+  methods: {
+    restart() {
+        this.$refs.myChild.restart()
+    }
   }
 }
 </script>

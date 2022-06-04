@@ -20,12 +20,16 @@
         </router-link>
       </li>
       <li class="nav-item">
-        <span class="nav-link" href="#">{{result || ''}}</span>
+        <span class="nav-link" href="#">{{this.result}}</span>
+      </li>
+      <li class="nav-item" v-if="this.result != ''">
+        <button @click="restart()" class="nav-link" href="#">Play Again!</button>
       </li>
     </ul>
   </div>
 </nav>
   </section>
+  
 
 </template>
 
@@ -43,7 +47,14 @@
       }
     },
     methods: {
+        verResult() {
+          console.log(this.result);
+        },
 
+        restart() {
+          this.$parent.restart()
+          
+        }
     },
     computed: {
 

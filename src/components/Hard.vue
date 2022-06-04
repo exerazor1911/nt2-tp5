@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="container" v-for="(color,index) in colors" :key="index">
-        <Cuadrado :colorGanador="this.pickedColor" :color="color" @click.native="corroborar()"/>
+        <Cuadrado :colorGanador="pickedColor" :color="color" @esGanador="winner=$event"/>
     </div>
 </div>
 
@@ -17,15 +17,15 @@ import Cuadrado from './Cuadrado.vue'
       Cuadrado
     },
     mounted () {
-      this.fillColors()
-      this.fillPickedColor()
-      this.$emit('colorToDisplay', this.pickedColor)
+      this.restart()
     },
     data () {
       return {
         colors : [],
         quantity : 6,
-        pickedColor: String
+        pickedColor: String,
+        result: '',
+        winner : Boolean
       }
     },
     methods: {
@@ -67,7 +67,25 @@ import Cuadrado from './Cuadrado.vue'
         this.result = "Try Again!"
       }
       this.$emit('result', this.result)
+    },
+
+    esGanador() {
+      console.log('corroborar');
+      if (this.winner) {
+        this.result = "You Picked Right!"
+      } else {
+        this.result = "Try Again!"
+      }
+      this.$emit('result', this.result)
+      console.log(this.result);
+    },
+
+    restart() {
+      this.fillColors()
+      this.fillPickedColor()
+      this.$emit('colorToDisplay', this.pickedColor)
     }
+
 
     },
     computed: {

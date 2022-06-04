@@ -16,9 +16,7 @@ import Cuadrado from './Cuadrado.vue'
     name: 'src-components-easy',
     props: [],
     mounted () {
-      this.fillColors()
-      this.fillPickedColor()
-      this.$emit('colorToDisplay', this.pickedColor)
+      this.restart()
     },
     components: {
     Cuadrado,
@@ -74,9 +72,15 @@ import Cuadrado from './Cuadrado.vue'
         this.result = "Try Again!"
       }
       this.$emit('result', this.result)
+      
       console.log(this.result);
     },
-
+    
+    restart() {
+      this.fillColors()
+      this.fillPickedColor()
+      this.$emit('colorToDisplay', this.pickedColor)
+    }
 
     },
     computed: {

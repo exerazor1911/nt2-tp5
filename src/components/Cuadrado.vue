@@ -24,6 +24,7 @@
       esGanador() {
          this.color == this.colorGanador ? this.ganador = true : this.ganador = false
          this.$emit('esGanador', this.ganador)
+         this.$parent.esGanador()
          console.log(this.ganador);
       }
     },
