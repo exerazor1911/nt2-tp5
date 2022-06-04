@@ -81,6 +81,8 @@ import Cuadrado from './Cuadrado.vue'
     },
 
     restart() {
+      this.result = ''
+      this.$emit('result', this.result)
       this.fillColors()
       this.fillPickedColor()
       this.$emit('colorToDisplay', this.pickedColor)

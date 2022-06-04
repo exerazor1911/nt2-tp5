@@ -1,7 +1,7 @@
 <template>
 
- <div @click="esGanador()" v-bind:style="{backgroundColor:this.color}" class="square"></div>
-
+ <div v-show="mostrar" @click="esGanador()" v-bind:style="{backgroundColor:this.color}" class="square"></div>
+<!-- v-show="mostrar" -->
 </template>
 
 <script>
@@ -16,16 +16,29 @@
     },
     data () {
       return {
-          ganador : Boolean
+          ganador : Boolean,
+          mostrar: true
       }
     },
     methods: {
 
       esGanador() {
-         this.color == this.colorGanador ? this.ganador = true : this.ganador = false
+         this.color == this.colorGanador ? this.ganador = true : this.ganador = false 
          this.$emit('esGanador', this.ganador)
          this.$parent.esGanador()
-         console.log(this.ganador);
+        //  this.setEstilo()
+        // 
+        //  console.log(this.ganador);
+      },
+
+      setEstilo() {
+        if (this.color != this.colorGanador) {
+         this.mostrar = false
+        }
+      },
+
+      mostrarse() {
+        this.mostrar = true
       }
     },
     computed: {

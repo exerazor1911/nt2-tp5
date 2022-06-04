@@ -2,7 +2,7 @@
 
 <div>
   <div id="container" v-for="(color,index) in colors" :key="index">
-      <Cuadrado :colorGanador="pickedColor" :color="color" @esGanador="winner=$event"/>
+      <Cuadrado ref="`myCuadrado + ${index}`" :colorGanador="pickedColor" :color="color" @esGanador="winner=$event"/>
   </div>
 </div>
 
@@ -77,10 +77,13 @@ import Cuadrado from './Cuadrado.vue'
     },
     
     restart() {
+      this.result = ''
+      this.$emit('result', this.result)
       this.fillColors()
       this.fillPickedColor()
       this.$emit('colorToDisplay', this.pickedColor)
-    }
+    },
+
 
     },
     computed: {
